@@ -346,6 +346,30 @@ function CriteriaInput({
   );
 }
 
+function MetricCard({
+  label,
+  value,
+  tone = "neutral",
+}: {
+  label: string;
+  value: string;
+  tone?: "neutral" | "green" | "yellow" | "red";
+}) {
+  return (
+    <div
+      className={clsx(
+        "rounded-[1.15rem] border p-3",
+        tone === "neutral" && "border-ink/10 bg-white/78",
+        tone === "green" && "border-[#10a44f]/22 bg-[#dff8e9]",
+        tone === "yellow" && "border-[#d8b354]/35 bg-[#f3e4b4]",
+        tone === "red" && "border-[#db3b2b]/22 bg-[#ffe0dc]",
+      )}
+    >
+      <div className="text-sm text-ink/70">{label}</div>
+      <div className="mt-2 text-3xl font-semibold tracking-tight text-ink">{value}</div>
+    </div>
+  );
+}
 function LabelWithTooltip({ label, tooltip }: { label: string; tooltip?: string }) {
   return (
     <div className="flex items-center gap-2 text-sm text-ink/70">
