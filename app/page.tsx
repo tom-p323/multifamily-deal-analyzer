@@ -96,7 +96,7 @@ export default function HomePage() {
               tone={summary.verdict ? getRentToPriceTone(summary.rentToPrice) : "neutral"}
             />
             <TopMetricCard label="Total monthly rent" value={formatCurrency(summary.totalMonthlyRent)} />
-            <TopMetricCard label="Max purchase price" value={formatCurrency(summary.maxPurchasePrice)} />
+            <TopMetricCard label="Max purchase price" value={formatCurrency(summary.maxPurchasePrice)} tooltip="Calculated as Total Monthly Rent divided by your Rent-to-Price Target." />
           </div>
           <div className="min-h-[22px] px-1 text-sm font-semibold tracking-[0.02em]">
             {summary.verdict ? (
