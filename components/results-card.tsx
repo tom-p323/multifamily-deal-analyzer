@@ -242,6 +242,10 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
           </ControlShell>
         </div>
 
+        <div className="mt-3 md:ml-auto md:w-[420px] lg:w-[460px]">
+          <MetricCard label="Total monthly rent" value={formatCurrency(metrics.totalMonthlyRent)} />
+        </div>
+
         <div className="mt-3 overflow-hidden rounded-[1.3rem] border border-ink/10 bg-white/75">
           <div className="overflow-x-auto">
             <table className="min-w-[700px] text-left text-sm md:min-w-full">
@@ -289,10 +293,6 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
               </tbody>
             </table>
           </div>
-        </div>
-
-        <div className="mt-3 md:ml-auto md:w-[420px] lg:w-[460px]">
-          <MetricCard label="Total monthly rent" value={formatCurrency(metrics.totalMonthlyRent)} />
         </div>
       </section>
     </section>

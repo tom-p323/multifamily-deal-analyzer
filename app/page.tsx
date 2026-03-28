@@ -80,7 +80,7 @@ export default function HomePage() {
     <main className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 py-4 md:px-6 md:py-5">
       <header className="mb-3 rounded-[1.5rem] border border-[#e8dfd0] bg-[#F4EFE6] px-4 py-4 text-ink shadow-card md:px-5 md:py-4.5">
         <div className="flex flex-col gap-3">
-          <p className="text-sm font-semibold tracking-[0.12em] text-ink/80">Multifamily Deal Analyzer</p>
+          <p className="text-base font-bold tracking-[0.08em] text-ink/85 md:text-[1.05rem]">Multifamily Deal Analyzer</p>
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             <TopMetricCard
               label="GRM"
