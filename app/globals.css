@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --background: #f7f0e4;
+  --foreground: #1d1b16;
+}
+
+html {
+  background:
+    radial-gradient(circle at top left, rgba(220, 185, 143, 0.4), transparent 30%),
+    linear-gradient(180deg, #f7f0e4 0%, #efe5d5 100%);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--foreground);
+  background: transparent;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.glass-panel {
+  background: rgba(255, 251, 245, 0.86);
+  backdrop-filter: blur(14px);
+}
