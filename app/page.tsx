@@ -31,6 +31,7 @@ function createEmptySummary(): DashboardSummary {
   return {
     grm: null,
     rentToPrice: null,
+    totalMonthlyRent: 0,
     maxPurchasePrice: 0,
     verdict: null,
   };
@@ -81,7 +82,7 @@ export default function HomePage() {
       <header className="mb-3 rounded-[1.5rem] border border-[#e8dfd0] bg-[#F4EFE6] px-4 py-4 text-ink shadow-card md:px-5 md:py-4.5">
         <div className="flex flex-col gap-3">
           <p className="text-base font-bold tracking-[0.08em] text-ink/85 md:text-[1.05rem]">Multifamily Deal Analyzer</p>
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             <TopMetricCard
               label="GRM"
               value={formatDecimal(summary.grm)}
@@ -94,6 +95,7 @@ export default function HomePage() {
               tooltip="Monthly Rent / Purchase Price"
               tone={summary.verdict ? getRentToPriceTone(summary.rentToPrice) : "neutral"}
             />
+            <TopMetricCard label="Total monthly rent" value={formatCurrency(summary.totalMonthlyRent)} />
             <TopMetricCard label="Max purchase price" value={formatCurrency(summary.maxPurchasePrice)} />
           </div>
           <div className="min-h-[22px] px-1 text-sm font-semibold tracking-[0.02em]">

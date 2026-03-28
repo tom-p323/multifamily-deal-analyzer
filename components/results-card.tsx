@@ -22,6 +22,7 @@ type CriteriaState = {
 export type DashboardSummary = {
   grm: number | null;
   rentToPrice: number | null;
+  totalMonthlyRent: number;
   maxPurchasePrice: number;
   verdict: VerdictDisplay | null;
 };
@@ -115,10 +116,11 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
     onSummaryChange?.({
       grm: metrics.grm,
       rentToPrice: metrics.rentToPrice,
+      totalMonthlyRent: metrics.totalMonthlyRent,
       maxPurchasePrice: metrics.maxPurchasePrice,
       verdict: verdictDisplay,
     });
-  }, [metrics.grm, metrics.maxPurchasePrice, metrics.rentToPrice, onSummaryChange, verdictDisplay]);
+  }, [metrics.grm, metrics.maxPurchasePrice, metrics.rentToPrice, metrics.totalMonthlyRent, onSummaryChange, verdictDisplay]);
 
   function updateUnit(index: number, updates: Partial<UnitInput>) {
     setUnits((current) => current.map((unit, unitIndex) => (unitIndex === index ? { ...unit, ...updates } : unit)));
@@ -242,25 +244,34 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
           </ControlShell>
         </div>
 
-        <div className="mt-3 md:ml-auto md:w-[420px] lg:w-[460px]">
-          <MetricCard label="Total monthly rent" value={formatCurrency(metrics.totalMonthlyRent)} />
-        </div>
-
         <div className="mt-3 overflow-hidden rounded-[1.3rem] border border-ink/10 bg-white/75">
           <div className="overflow-x-auto">
             <table className="min-w-[700px] text-left text-sm md:min-w-full">
               <thead className="bg-mist text-ink/70">
                 <tr>
                   <th className="px-3 py-2.5 font-medium">Unit</th>
+                  <th className="px-3 py-2.5 font-medium"></th>
                   <th className="px-3 py-2.5 font-medium">Unit type</th>
                   <th className="px-3 py-2.5 font-medium">Estimated rent</th>
-                  <th className="px-3 py-2.5 font-medium">Enter rent</th>
                 </tr>
               </thead>
               <tbody>
                 {compactUnits.map((unit, index) => (
                   <tr key={unit.id} className="border-t border-ink/5">
                     <td className="px-3 py-2.5 font-medium text-ink">{unit.label}</td>
+                    <td className="px-3 py-2.5">
+                      <input
+                        value={formatCurrencyInput(unit.rent?.toString() ?? "")}
+                        onChange={(event) =>
+                          updateUnit(index, {
+                            rent: normalizePositiveNumber(event.target.value),
+                          })
+                        }
+                        placeholder="$0"
+                        inputMode="numeric"
+                        className={inputClassName(unit.rent === null)}
+                      />
+                    </td>
                     <td className="px-3 py-2.5">
                       <select
                         value={unit.bedroomType}
@@ -275,19 +286,6 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
                       </select>
                     </td>
                     <td className="px-3 py-2.5 text-ink/70">{formatCurrency(unit.estimatedRent)}</td>
-                    <td className="px-3 py-2.5">
-                      <input
-                        value={formatCurrencyInput(unit.rent?.toString() ?? "")}
-                        onChange={(event) =>
-                          updateUnit(index, {
-                            rent: normalizePositiveNumber(event.target.value),
-                          })
-                        }
-                        placeholder="$0"
-                        inputMode="numeric"
-                        className={inputClassName(unit.rent === null)}
-                      />
-                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -341,31 +339,6 @@ function CriteriaInput({
         {suffix ? <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-ink/45">{suffix}</span> : null}
       </div>
     </label>
-  );
-}
-
-function MetricCard({
-  label,
-  value,
-  tone = "neutral",
-}: {
-  label: string;
-  value: string;
-  tone?: "neutral" | "green" | "yellow" | "red";
-}) {
-  return (
-    <div
-      className={clsx(
-        "rounded-[1.15rem] border p-3",
-        tone === "neutral" && "border-ink/10 bg-white/78",
-        tone === "green" && "border-[#10a44f]/22 bg-[#dff8e9]",
-        tone === "yellow" && "border-[#d8b354]/35 bg-[#f3e4b4]",
-        tone === "red" && "border-[#db3b2b]/22 bg-[#ffe0dc]",
-      )}
-    >
-      <div className="text-sm text-ink/70">{label}</div>
-      <div className="mt-2 text-3xl font-semibold tracking-tight text-ink">{value}</div>
-    </div>
   );
 }
 
