@@ -177,7 +177,7 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
 
           <ControlShell>
             <div className="text-sm text-ink/70">Max purchase price</div>
-            <div className="mt-2 rounded-xl border border-ink/10 bg-white px-3 py-2 text-base font-semibold text-ink">
+            <div className="mt-2 px-3 py-2 text-base font-semibold text-ink">
               {formatCurrency(metrics.maxPurchasePrice)}
             </div>
           </ControlShell>
