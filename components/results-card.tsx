@@ -159,8 +159,8 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
           className={clsx(
             "grid gap-3",
             criteriaOpen
-              ? "lg:grid-cols-[minmax(220px,280px)_130px_minmax(280px,1fr)_110px]"
-              : "lg:grid-cols-[minmax(220px,280px)_130px_minmax(190px,1fr)_110px]",
+              ? "lg:grid-cols-[minmax(220px,250px)_minmax(220px,250px)_110px_minmax(260px,1fr)_110px]"
+              : "lg:grid-cols-[minmax(220px,250px)_minmax(220px,250px)_110px_minmax(190px,1fr)_110px]",
           )}
         >
           <ControlShell>
@@ -173,6 +173,13 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
               inputMode="numeric"
               className={inputClassName(parsedPurchasePrice === null)}
             />
+          </ControlShell>
+
+          <ControlShell>
+            <div className="text-sm text-ink/70">Max purchase price</div>
+            <div className="mt-2 rounded-xl border border-ink/10 bg-white px-3 py-2 text-base font-semibold text-ink">
+              {formatCurrency(metrics.maxPurchasePrice)}
+            </div>
           </ControlShell>
 
           <ControlShell>
@@ -205,7 +212,7 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
                 <Tooltip text="These thresholds may vary by market. Adjust them for the area you're evaluating." />
               </div>
               {criteriaOpen ? (
-                <div className="grid gap-2 rounded-xl border border-ink/10 bg-white/90 p-3 text-left text-xs md:grid-cols-2">
+                <div className="grid gap-2 rounded-xl border border-ink/10 bg-white/90 p-2.5 text-left text-xs md:grid-cols-2">
                   <CriteriaInput
                     label="Rent-to-Price Target (%)"
                     suffix="%"
@@ -337,9 +344,9 @@ function CriteriaInput({
           value={value}
           onChange={(event) => onChange(event.target.value.replace(/[^0-9.]/g, ""))}
           inputMode="decimal"
-          className="w-full rounded-lg border border-ink/10 bg-white px-3 py-2 pr-7 text-sm font-medium outline-none focus:border-clay focus:ring-2 focus:ring-clay/20"
+          className="w-full rounded-lg border border-ink/10 bg-white px-2.5 py-2 pr-5 text-sm font-medium outline-none focus:border-clay focus:ring-2 focus:ring-clay/20"
         />
-        {suffix ? <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-ink/45">{suffix}</span> : null}
+        {suffix ? <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-ink/45">{suffix}</span> : null}
       </div>
     </label>
   );
