@@ -212,8 +212,8 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
                 <Tooltip
                   text={
                     <>
-                      <div>{"\u2022"} R-to-P = Rent-to-price</div>
-                      <div>{"\u2022"} CAUTION! These thresholds vary by market. Verify and adjust accordingly.</div>
+                      <div>&bull; R-to-P = Rent-to-price</div>
+                      <div>&bull; CAUTION! These thresholds vary by market. Verify and adjust accordingly.</div>
                     </>
                   }
                 />
