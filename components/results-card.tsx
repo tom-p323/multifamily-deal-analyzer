@@ -210,6 +210,7 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
                   <span className={clsx("text-sm leading-none transition", criteriaOpen && "rotate-180")}>v</span>
                 </button>
                 <Tooltip
+                  ariaLabel="Deal Criteria info"
                   text={
                     <>
                       <div>&bull; R-to-P = Rent-to-price</div>
@@ -363,19 +364,19 @@ function LabelWithTooltip({ label, tooltip }: { label: string; tooltip?: string 
   return (
     <div className="flex items-center gap-2 text-sm text-ink/70">
       <span>{label}</span>
-      {tooltip ? <Tooltip text={tooltip} /> : null}
+      {tooltip ? <Tooltip text={tooltip} ariaLabel={tooltip} /> : null}
     </div>
   );
 }
 
-function Tooltip({ text }: { text: React.ReactNode }) {
+function Tooltip({ text, ariaLabel }: { text: React.ReactNode; ariaLabel?: string }) {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="group relative inline-flex items-center">
       <button
         type="button"
-        aria-label={text}
+        aria-label={ariaLabel ?? (typeof text === "string" ? text : "More info")}
         onClick={() => setOpen((current) => !current)}
         onBlur={() => setOpen(false)}
         className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-ink/15 bg-white text-[11px] font-semibold text-ink/55 transition hover:border-clay/40 hover:text-clay focus:border-clay focus:outline-none"
