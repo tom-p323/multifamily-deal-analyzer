@@ -209,7 +209,7 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
                   <span>Deal Criteria</span>
                   <span className={clsx("text-sm leading-none transition", criteriaOpen && "rotate-180")}>v</span>
                 </button>
-                <Tooltip text="R-to-P means Rent-to-price." />
+                <Tooltip text="• R-to-P = Rent-to-price`n• CAUTION! These thresholds vary by market. Verify and adjust accordingly." />
               </div>
               {criteriaOpen ? (
                 <div className="grid gap-2 rounded-xl border border-ink/10 bg-white/90 p-2.5 text-left text-xs md:grid-cols-2">
