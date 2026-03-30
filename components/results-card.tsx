@@ -214,13 +214,13 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
               {criteriaOpen ? (
                 <div className="grid gap-2 rounded-xl border border-ink/10 bg-white/90 p-2.5 text-left text-xs md:grid-cols-2">
                   <CriteriaInput
-                    label="Rent-to-Price Target (%)"
+                    label="R-to-P Target (%)"
                     suffix="%"
                     value={criteria.targetRatio}
                     onChange={(value) => setCriteria((current) => ({ ...current, targetRatio: value }))}
                   />
                   <CriteriaInput
-                    label="Rent-to-Price Minimum (%)"
+                    label="R-to-P Minimum (%)"
                     suffix="%"
                     value={criteria.passRatio}
                     onChange={(value) => setCriteria((current) => ({ ...current, passRatio: value }))}
