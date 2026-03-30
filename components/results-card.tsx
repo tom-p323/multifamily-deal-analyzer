@@ -209,7 +209,7 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
                   <span>Deal Criteria</span>
                   <span className={clsx("text-sm leading-none transition", criteriaOpen && "rotate-180")}>v</span>
                 </button>
-                <Tooltip text="These thresholds may vary by market. Adjust them for the area you're evaluating." />
+                <Tooltip text="R-to-P means Rent-to-price." />
               </div>
               {criteriaOpen ? (
                 <div className="grid gap-2 rounded-xl border border-ink/10 bg-white/90 p-2.5 text-left text-xs md:grid-cols-2">
@@ -220,7 +220,7 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
                     onChange={(value) => setCriteria((current) => ({ ...current, targetRatio: value }))}
                   />
                   <CriteriaInput
-                    label="R-to-P Minimum (%)"
+                    label="R-to-P Min (%)"
                     suffix="%"
                     value={criteria.passRatio}
                     onChange={(value) => setCriteria((current) => ({ ...current, passRatio: value }))}
