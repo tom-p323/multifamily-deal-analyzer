@@ -159,8 +159,8 @@ export function ResultsCard({ analysis, onSummaryChange }: ResultsCardProps) {
           className={clsx(
             "grid gap-3",
             criteriaOpen
-              ? "lg:grid-cols-[minmax(220px,250px)_minmax(220px,250px)_110px_minmax(260px,1fr)_110px]"
-              : "lg:grid-cols-[minmax(220px,250px)_minmax(220px,250px)_110px_minmax(190px,1fr)_110px]",
+              ? "lg:grid-cols-[minmax(190px,230px)_minmax(190px,230px)_110px_minmax(320px,1fr)_110px]"
+              : "lg:grid-cols-[minmax(190px,230px)_minmax(190px,230px)_110px_minmax(220px,1fr)_110px]",
           )}
         >
           <ControlShell>
